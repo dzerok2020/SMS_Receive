@@ -23,8 +23,8 @@ public class SMSReceiveActivity extends AppCompatActivity {
         setContentView(R.layout.sms_receive_layout);
 
         // Check and allow required oermissions
-        if (!checkPermission(Manifest.permission.RECEIVE_SMS)) {
-            requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, REQ_CODE);
+        if (!checkPermission(Manifest.permission.RECEIVE_SMS) || !checkPermission(Manifest.permission.CALL_PHONE)) {
+            requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS, Manifest.permission.CALL_PHONE}, REQ_CODE);
         } else {
             performAction();
         }

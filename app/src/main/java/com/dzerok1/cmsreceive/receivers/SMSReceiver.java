@@ -3,6 +3,7 @@ package com.dzerok1.cmsreceive.receivers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
@@ -58,6 +59,17 @@ public class SMSReceiver extends BroadcastReceiver {
 
     // Call
     private void call(Context context, String callNumber) {
-        Log.d(TAG, "call: " + callNumber);
+//        Log.d(TAG, "call: " + callNumber);
+//        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + callNumber));
+//        context.startActivity(intent);
+        // For get a text app to run
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.addCategory(intent.CATEGORY_DEFAULT);
+
+        // Pass the paramter to text app
+        intent.putExtra(Intent.EXTRA_TEXT, "Text to send");
+
+        intent.setType("text/plain");
+        context.startActivity(intent);
     }
 }
